@@ -1,5 +1,5 @@
 type Query {
-  getUser(id: ID!): User!
+  artist(artistId: ID!): Artist
 }
 
 type Mutation {
@@ -15,6 +15,48 @@ type User {
 }
 
 type AuthPayload {
-  token: String!
-  user: User!
+  token: String
+  user: User
+}
+
+type DiscogsData {
+  artist: Artist
+  label: Label
+  search: [searchResult]!
+}
+union searchResult = Artist | Label
+
+type Artist {
+  artistId: ID!
+  name: String
+  nameVariation: [String]
+  aliases: [Alias]!
+  groups: [Group]!
+  profile: String
+  websites: [String]!
+  imageUrl: String
+  releases: [Release]
+}
+
+type Alias {
+  id: ID!
+  name: String
+  resourceUrl: String
+}
+
+type Group {
+  id: ID!
+  name: String
+  resourceUrl: String
+  active: Boolean
+}
+
+type Release {
+  releaseId: ID!
+  title: String
+}
+
+type Label {
+  id: ID!
+  name: String
 }
