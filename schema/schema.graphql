@@ -1,5 +1,7 @@
 type Query {
   artist(artistId: ID!): Artist
+  label(labelId: ID!): Label
+  release(releaseId: ID!): CompleteRelease
 }
 
 type Mutation {
@@ -19,23 +21,16 @@ type AuthPayload {
   user: User
 }
 
-type DiscogsData {
-  artist: Artist
-  label: Label
-  search: [searchResult]!
-}
-union searchResult = Artist | Label
-
 type Artist {
   artistId: ID!
-  name: String
-  nameVariation: [String]
-  aliases: [Alias]!
-  groups: [Group]!
+  name: String!
+  namevariations: [String]
+  aliases: [Alias]
+  groups: [Group]
   profile: String
-  websites: [String]!
-  imageUrl: String
-  releases: [Release]
+  urls: [String]
+  image: String
+  releases: [ShortRelease]
 }
 
 type Alias {
@@ -51,12 +46,54 @@ type Group {
   active: Boolean
 }
 
-type Release {
+interface Release {
   releaseId: ID!
+  label: String
   title: String
+  year: Int
+}
+
+type ShortRelease implements Release {
+  releaseId: ID!
+  format: String
+  label: String
+  title: String
+  artist: String
+  year: Int
+}
+
+type CompleteRelease implements Release {
+  releaseId: ID!
+  formats: [String]
+  label: String
+  title: String
+  year: Int
+  artists: [Artist]
+  labels: [Label]
+  country: String
+  released_formatted: String
+  videos: [Video]
+  genres: [String]
+  styles: [String]
+  tracklist: [Track]
+}
+
+type Video {
+  uri: String
+  title: String
+  duration: Int
+}
+
+type Track {
+  position: String
+  type: String
+  title: String
+  duration: String
 }
 
 type Label {
-  id: ID!
+  labelId: ID!
   name: String
+  image: String
+  releases: [ShortRelease]!
 }

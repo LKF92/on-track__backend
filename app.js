@@ -5,6 +5,8 @@ const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const { makeExecutableSchema } = require("graphql-tools");
 const User = require("./resolvers/User");
+const Artist = require("./resolvers/Artist");
+const Label = require("./resolvers/Label");
 const Query = require("./resolvers/Query");
 const Mutation = require("./resolvers/Mutation");
 const mongoose = require("mongoose");
@@ -12,7 +14,7 @@ const cors = require("cors");
 
 const schemaFile = path.join(__dirname, "./schema/schema.graphql");
 const typeDefs = fs.readFileSync(schemaFile, "utf-8");
-const resolvers = { Query, Mutation, User };
+const resolvers = { Query, Mutation, User, Artist, Label };
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 mongoose.connect(process.env.MONGO_URI, {
