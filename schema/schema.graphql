@@ -1,7 +1,7 @@
 type Query {
-  artist(artistId: ID!): Artist
-  label(labelId: ID!): Label
-  release(releaseId: ID!): CompleteRelease
+  artist(id: ID!): Artist
+  label(id: ID!): Label
+  release(id: ID!): CompleteRelease
 }
 
 type Mutation {
@@ -22,9 +22,10 @@ type AuthPayload {
 }
 
 type Artist {
-  artistId: ID!
-  name: String!
+  id: ID!
+  name: String
   namevariations: [String]
+  members: [Artist]
   aliases: [Alias]
   groups: [Group]
   profile: String
@@ -47,14 +48,14 @@ type Group {
 }
 
 interface Release {
-  releaseId: ID!
+  id: ID!
   label: String
   title: String
   year: Int
 }
 
 type ShortRelease implements Release {
-  releaseId: ID!
+  id: ID!
   format: String
   label: String
   title: String
@@ -63,7 +64,7 @@ type ShortRelease implements Release {
 }
 
 type CompleteRelease implements Release {
-  releaseId: ID!
+  id: ID!
   formats: [String]
   label: String
   title: String
@@ -92,7 +93,7 @@ type Track {
 }
 
 type Label {
-  labelId: ID!
+  id: ID!
   name: String
   image: String
   releases: [ShortRelease]!

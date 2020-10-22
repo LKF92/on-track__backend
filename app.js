@@ -20,6 +20,7 @@ const schema = makeExecutableSchema({ typeDefs, resolvers });
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 mongoose.connection.once("open", () => console.log("connected to database!"));
 

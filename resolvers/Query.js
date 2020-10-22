@@ -7,16 +7,16 @@ const db = new Discogs({
 // Query Discogs API to get the artist/label/release details
 async function artist(parent, args) {
   try {
-    const artist = await db.getArtist(args.artistId);
+    const artist = await db.getArtist(args.id);
 
     if (!artist) {
-      throw new Error(`No artist found for id ${args.artistId}`);
+      throw new Error(`No artist found for id ${args.id}`);
     }
 
     return {
       ...artist,
-      artistId: artist.id,
-      image: artist.images[0].uri,
+      id: artist.id,
+      image: artist.images ? artist.images[0].uri : null,
     };
   } catch (error) {
     console.log(error);
@@ -25,17 +25,15 @@ async function artist(parent, args) {
 
 async function label(parent, args) {
   try {
-    const label = await db.getLabel(args.labelId);
+    const label = await db.getLabel(args.id);
 
     if (!label) {
-      throw new Error(`No label found for id ${args.labelId}`);
+      throw new Error(`No label found for id ${args.id}`);
     }
 
     return {
       ...label,
-      labelId: label.id,
-      name: label.name,
-      image: label.images[0].uri,
+      image: label.images ? label.images[0].uri : null,
     };
   } catch (error) {
     console.log(error);
@@ -44,10 +42,10 @@ async function label(parent, args) {
 
 async function release(parent, args) {
   try {
-    const release = await db.getRelease(args.releaseId);
+    const release = await db.getRelease(args.id);
 
     if (!release) {
-      throw new Error(`No Release found for id ${args.releaseId}`);
+      throw new Error(`No Release found for id ${args.id}`);
     }
 
     return {
@@ -55,7 +53,7 @@ async function release(parent, args) {
       formats: () => release.formats.map((format) => format.name),
       artists: () =>
         release.artists.map((artist) => {
-          return { artistId: artist.id, name: artist.name };
+          return { id: artist.id, name: artist.name };
         }),
     };
   } catch (error) {
