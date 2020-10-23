@@ -37,5 +37,4 @@ app.use(
   }))
 );
 
-// app.use("/", (req, res) => res.send("this is a test"));
 app.listen(process.env.PORT, () => console.log(`Server is up on port ${process.env.PORT}`));
