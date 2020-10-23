@@ -2,11 +2,15 @@ type Query {
   artist(id: ID!): Artist
   label(id: ID!): Label
   release(id: ID!): CompleteRelease
+  user(id: ID!): User
 }
 
 type Mutation {
   signup(username: String!, email: String!, password: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
+  addFavArtist(id: ID!): [String!]!
+  addFavLabel(id: ID!): [String!]!
+  addFavEP(id: ID!): [String!]!
 }
 
 type User {
@@ -14,6 +18,11 @@ type User {
   username: String!
   email: String!
   password: String!
+  favArtists: [ID!]!
+  favLabels: [ID!]!
+  favEPs: [ID!]!
+  # EPsToListen: [ID!]!
+  # alreadyListened: [ID!]!
 }
 
 type AuthPayload {

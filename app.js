@@ -26,16 +26,15 @@ mongoose.connection.once("open", () => console.log("connected to database!"));
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 app.use(
   "/graphql",
-  graphqlHTTP({
+  graphqlHTTP((request) => ({
     schema: schema,
     graphiql: true,
-    context: (request) => {
-      return { ...request };
-    },
-  })
+    context: { request: { ...request } },
+  }))
 );
 
 app.listen(4000, () => console.log(`Server is up on port ${process.env.PORT}`));

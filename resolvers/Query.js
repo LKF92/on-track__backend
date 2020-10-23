@@ -1,3 +1,4 @@
+const User = require("../models/User");
 const Discogs = require("disconnect").Client;
 const db = new Discogs({
   consumerKey: process.env.CONSUMER_KEY,
@@ -61,4 +62,15 @@ async function release(parent, args) {
   }
 }
 
-module.exports = { artist, label, release };
+async function user(parent, args) {
+  try {
+    const user = await User.findById(args.id);
+    if (user) return user;
+
+    throw new Error(`no user found with the id ${args.id}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+module.exports = { artist, label, release, user };

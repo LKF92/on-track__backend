@@ -8,7 +8,6 @@ const User = mongoose.model("User", {
   },
   password: {
     type: String,
-    unique: true,
     required: true,
   },
   email: {
@@ -19,7 +18,8 @@ const User = mongoose.model("User", {
   favArtists: [String],
   favLabels: [String],
   favEPs: [String],
-  EPsToListen: [String],
+  // EPsToListen: {type: [String], default: []},
+  // alreadyListened: {type: [String], default: []},
 });
 
 module.exports = User;
