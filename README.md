@@ -18,9 +18,9 @@ The frontend will come soon and will use React/TypeScript with Apollo.
 
 1. Go to the [GraphiQL playground](https://on-track-discogs.herokuapp.com/graphql).
 2. Signup
-   [](./gif/signup.gif)
+   ![](signup.gif)
 3. Or login with the credentials you just created (or use the fake email 'test@gmail.com' with the password 'test1')
-   [](./gif/login.gif)
+   ![](login.gif)
 4. Keep the token you received
 
 ### Add an artist, label or release to your favourites
@@ -30,9 +30,9 @@ The frontend will come soon and will use React/TypeScript with Apollo.
    "Authorization" : "Bearer **your token here**"
    }
 2. Select the mutation you want (addFavEP, addFavLabel, addFavArtist) and pass in the argument the id. You will find it on the discogs url (e.g id 1773572 in https://www.discogs.com/artist/1773572-Central-7)
-   [](./gif/addFavArtist.gif)
+   ![](addFavArtist.gif)
 
 ### Query an artist, label or release from the Discogs database
 
 1. Choose your query and pass in the argument id of the desired artist/label/release. You will find in on the discogs url (e.g id 1773572 in https://www.discogs.com/artist/1773572-Central-7)
-   [](./gif/queryArtist.gif)
+   ![](queryArtist.gif)
