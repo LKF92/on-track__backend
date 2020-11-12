@@ -1,9 +1,5 @@
 const User = require("../models/User");
-const Discogs = require("disconnect").Client;
-const db = new Discogs({
-  consumerKey: process.env.CONSUMER_KEY,
-  consumerSecret: process.env.CONSUMER_SECRET,
-}).database();
+const { db } = require("../utils");
 
 // Query Discogs API to get the artist/label/release details
 async function artist(parent, args) {

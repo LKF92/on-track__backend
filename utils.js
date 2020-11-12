@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const Discogs = require("disconnect").Client;
 
 // Get the Authorization header from our request
 // We can access it from the context object since we passed in in app.js
@@ -15,6 +16,12 @@ function getUserId(context) {
   throw new Error("Not Authenticated");
 }
 
+const db = new Discogs({
+  consumerKey: process.env.CONSUMER_KEY,
+  consumerSecret: process.env.CONSUMER_SECRET,
+}).database();
+
 module.exports = {
   getUserId,
+  db,
 };

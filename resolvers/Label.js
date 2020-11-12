@@ -1,8 +1,4 @@
-const Discogs = require("disconnect").Client;
-const db = new Discogs({
-  consumerKey: process.env.CONSUMER_KEY,
-  consumerSecret: process.env.CONSUMER_SECRET,
-}).database();
+const { db } = require("../utils");
 
 async function releases(parent, args) {
   try {

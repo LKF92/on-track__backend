@@ -9,8 +9,8 @@ A lot of music enthousiasts use Discogs as a tool to discover new artists and la
 
 The backend is in Node.js with GraphQL and mongoDB, and is deployed on Heroku. I used graphql schema definition language(SDL) to define the graphql schema and resolvers, as I think it provides a much better readability than graphQL.js, especially when the project start to grow and have quite a few types defined.
 
-This is still a work in progress, not all functionnalities are ready yet.
-The frontend will come soon and will use React/TypeScript with Apollo.
+This is still a work in progress, not all functionnalities are ready yet. I will also be adding tests.
+The frontend will be created soon and will use React/TypeScript with Apollo and Next.js (maybe).
 
 ## Try the API
 
