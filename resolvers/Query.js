@@ -72,7 +72,9 @@ async function user(parent, args) {
 async function search(parent, args) {
   try {
     const search = await db.search(args.searchQuery, args.searchType);
-    if (search) return search.results;
+    if (search) {
+      return search.results.filter((result) => result.type === "artist" || result.type === "label");
+    }
     return [];
   } catch (error) {
     console.log(error);
