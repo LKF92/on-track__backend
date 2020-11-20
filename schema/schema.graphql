@@ -3,6 +3,7 @@ type Query {
   label(id: ID!): Label
   release(id: ID!): CompleteRelease
   user(id: ID!): User
+  search(searchQuery: String!, searchType: String): [SearchResult]!
 }
 
 type Mutation {
@@ -106,4 +107,11 @@ type Label {
   name: String
   image: String
   releases: [ShortRelease]!
+}
+
+type SearchResult {
+  id: ID!
+  title: String
+  type: String
+  thumb: String
 }
