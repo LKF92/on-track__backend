@@ -106,6 +106,9 @@ type Label {
   id: ID!
   name: String
   image: String
+  profile: String
+  subLabel: [Label]
+  urls: [String]
   releases: [ShortRelease]!
 }
 
